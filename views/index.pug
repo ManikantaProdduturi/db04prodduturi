@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  p No changes in index PUG file<br><br>
+    button(type="button" class="btn btn-success" onClick="update()") Press Me
+  div(id="target") Display
+  script.
+    var client_count=0;
+    function update(){
+      client_count=client_count+1;
+      document.getElementById("target").innerHTML=`Value now ${client_count}`;
+    }
+  a(href='Watches') 
