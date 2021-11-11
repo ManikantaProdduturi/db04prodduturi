@@ -46,16 +46,16 @@ db.once("open", function(){
  // We can seed the collection if needed on server start 
 async function recreateDB(){ 
   // Delete everything 
-  await Costume.deleteMany(); 
+  await Watches.deleteMany(); 
  
   let instance1 = new 
-Costume({WName:"Rolex",  WSize:'41mm', 
+Watches({WName:"Rolex",  WSize:'41mm', 
 WCost:9000}); 
 let instance2 = new 
-Costume({WName:"Fossil",  WSize:'30mm', 
+Watches({WName:"Fossil",  WSize:'30mm', 
 WCost:7500}); 
 let instance3 = new 
-Costume({WName:"Apple",  WSize:'41mm', 
+Watches({WName:"Apple",  WSize:'41mm', 
 WCost:5000});
   instance1.save( function(err,doc) { 
       if(err) return console.error(err); 
