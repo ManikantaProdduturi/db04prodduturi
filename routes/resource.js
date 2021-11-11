@@ -13,19 +13,19 @@ router.get('/', api_controller.api);
 /// Watches ROUTES /// 
  
 // POST request for creating a Watches.  
-router.post('/Watchess', Watches_controller.Watches_create_post); 
+router.post('/Watches', Watches_controller.Watches_create_post); 
  
 // DELETE request to delete Watches. 
-router.delete('/Watchess/:id', Watches_controller.Watches_delete); 
+router.delete('/Watches/:id', Watches_controller.Watches_delete); 
  
 // PUT request to update Watches. 
-router.put('/Watchess/:id', 
+router.put('/Watches/:id', 
 Watches_controller.Watches_update_put); 
  
 // GET request for one Watches. 
-router.get('/Watchess/:id', Watches_controller.Watches_detail); 
+router.get('/Watches/:id', Watches_controller.Watches_detail); 
  
 // GET request for list of all Watches items. 
-router.get('/Watchess', Watches_controller.Watches_list); 
+router.get('/Watches', Watches_controller.Watches_list); 
  
 module.exports = router; 
