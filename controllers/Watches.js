@@ -41,7 +41,7 @@ exports.Watches_list = async function(req, res) {
 exports.Watches_view_all_Page = async function(req, res) { 
     try{ 
         theWatchess = await Watches.find(); 
-        res.render('Watchess', { title: 'Watches Search Results', results: theWatchess }); 
+        res.render('Watches', { title: 'Watches Search Results', results: theWatchess }); 
     } 
     catch(err){ 
         res.status(500); 
