@@ -15,7 +15,8 @@ var usersRouter = require('./routes/users');
 var WatchesRouter = require('./routes/Watches');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector')
-var Watches = require("./models/Watches"); 
+var Watches = require("./models/Watches");
+var resourceRouter = require('./routes/resource') 
 
 var app = express();
 
@@ -34,6 +35,7 @@ app.use('/users', usersRouter);
 app.use('/Watches', WatchesRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
 
 //Get the default connection 
 var db = mongoose.connection; 
