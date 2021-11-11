@@ -3,12 +3,19 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const connectionString =  
+process.env.MONGO_CON 
+mongoose = require('mongoose'); 
+mongoose.connect(connectionString,  
+{useNewUrlParser: true, 
+useUnifiedTopology: true}); 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var WatchesRouter = require('./routes/Watches');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector')
+var Watches = require("./models/Watches"); 
 
 var app = express();
 
@@ -27,6 +34,46 @@ app.use('/users', usersRouter);
 app.use('/Watches', WatchesRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);
+
+//Get the default connection 
+var db = mongoose.connection; 
+ 
+//Bind connection to error event  
+db.on('error', console.error.bind(console, 'MongoDB connection error:')); 
+db.once("open", function(){ 
+ console.log("Connection to DB succeeded")}); 
+
+ // We can seed the collection if needed on server start 
+async function recreateDB(){ 
+  // Delete everything 
+  await Costume.deleteMany(); 
+ 
+  let instance1 = new 
+Costume({WName:"Rolex",  WSize:'41mm', 
+WCost:9000}); 
+let instance2 = new 
+Costume({WName:"Fossil",  WSize:'30mm', 
+WCost:7500}); 
+let instance3 = new 
+Costume({WName:"Apple",  WSize:'41mm', 
+WCost:5000});
+  instance1.save( function(err,doc) { 
+      if(err) return console.error(err); 
+      console.log("First object saved") 
+  }); 
+  instance2.save( function(err,doc) { 
+    if(err) return console.error(err); 
+    console.log("First object saved") 
+}); 
+instance3.save( function(err,doc) { 
+  if(err) return console.error(err); 
+  console.log("First object saved") 
+}); 
+} 
+ 
+let reseed = true; 
+if (reseed) { recreateDB();} 
+ 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
