@@ -1,0 +1,43 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let Watchesid = toShow._id 
+  - let  WName = toShow. WName 
+  - let  WSize = toShow.WSize 
+  - let WWCost = toShow.WCost
+   
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{Watchesid} 
+  - let actionid = "/resource/Watches/" + Watchesid 
+  form(id='WatchesForm', action= actionid, method="PUT") 
+    div.form-group 
+        label.WatchesAttr(for=' WName') Watches type 
+        input#WName(type='text', name=' WName', value=  WName ) 
+    div.form-group 
+        label.WatchesAttr(for='WSize') Watches WSize 
+        input#WSize(type='text', name='WSize', value= WWCost ) 
+    div.form-group 
+        label.WatchesAttr(for='WCost') Watches WCost 
+        input#WCost(type='number', name='WCost', value=  WSize ) 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['WatchesForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    }); 

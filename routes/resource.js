@@ -26,6 +26,20 @@ Watches_controller.Watches_update_put);
 router.get('/Watches/:id', Watches_controller.Watches_detail); 
  
 // GET request for list of all Watches items. 
-router.get('/Watches', Watches_controller.Watches_list); 
+router.get('/Watches', Watches_controller.Watches_list);
+
+/* GET detail Watches page */ 
+router.get('/detail', Watches_controller.Watches_view_one_Page);
+
+/* GET create Watches page */ 
+router.get('/create', Watches_controller.Watches_create_Page); 
+
+/* GET create update page */ 
+router.get('/update', Watches_controller.Watches_update_Page);
+
+/* GET create Watches page */ 
+router.get('/delete', Watches_controller.Watches_delete_Page);
  
 module.exports = router; 
+
+
